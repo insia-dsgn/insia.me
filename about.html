@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Insia Haque</title>
+  <link rel="icon" type="image/x-icon" href="Images/Assets/favicon-32x32.png">
+  <link rel="stylesheet" href="https://use.typekit.net/iqt2wwe.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="about.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="filters">
+        <div class="filter-nav-container">
+          <!-- "Return to my work" styled like 'about' button -->
+          <div class="nav-buttons">
+            <a href="index.html">return to my work</a>
+          </div>
+      
+          <!-- About subnav buttons styled like filter buttons -->
+          <div class="filter-buttons">
+            <button onclick="window.open('Images/Assets/Resume.pdf', '_blank')">resume</button>
+            <button onclick="window.open('https://linkedin.com/in/insiahaque/', '_blank')">linkedin</button>
+            <button onclick="window.location.href='mailto:insia@sas.upenn.edu'">email</button>
+          </div>
+        </div>
+
+        <select class="filter-select mobile-only" onchange="handleAboutDropdown(this)">
+          <option value="about" selected>about</option>
+          <option value="resume">resume</option>
+          <option value="linkedin">linkedin</option>
+          <option value="email">email</option>
+        </select>
+      </div>
+      <div id="content">
+        <div id="left">
+          <div class="text-wrapper">
+            <div id="blurb">
+              <a class="underlined" href="index.html">Insia Haque</a> is an artist passionate about creating meaningful 
+              design for <span class="hl">social impact.</span>
+            </div>
+            <div id="subblurb">
+              I bring stories to life through illustration and design. Currently 
+              Design Editor for <a class="underlined" href="https://www.34st.com/" target="_blank"><i>34th 
+              Street Magazine</i></a> and <a class="underlined" href="https://www.thedp.com/" target="_blank"><i>The Daily Pennsylvanian</i></a>, 
+              interning at the <a class="underlined" href="https://innocenceproject.org/" target="_blank"><i>Innocence Project</i></a>,
+              and studying Cognitive Science and Design at the University of
+              <span class="chunk">Pennsylvania <span id="dingbat">✳</span></span>
+            </div>
+            <div id="subblurb">
+              This website is a work in progress! If you'd like to read through my print layouts, view them
+              <a class="underlined" href="https://issuu.com/34st" target="_blank"><i>here</i></a>.
+              If you have any questions about any of my work, feel free to email me at 
+              <a class="underlined" href="mailto:insia@sas.upenn.edu" target="_blank"><i>insia@sas.upenn.edu</i></a>!
+            </div>
+          </div>
+        </div>
+      
+        <div id="headshot-container">
+          <img id="headshot" src="Images/Assets/Headshot.png" alt="Headshot of Insia Haque">
+        </div>
+      </div>      
+</body>

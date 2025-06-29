@@ -1,0 +1,227 @@
+body {
+    margin: 0;
+    font-family: degular, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    background: #000;
+    color: #eee;
+}
+
+.filters {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.filter-nav-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-buttons {
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 6px 12px;
+}
+
+.filter-buttons button,
+.filter-select {
+    background: #000;
+    color: #eee;
+    border: none;
+    font-family: degular, sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.nav-buttons a {
+    background: #eee;
+    color: #000;
+    border: 1px solid #eee;
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-family: degular, sans-serif;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.filter-buttons button:hover {
+    color: #90ba9d;
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.nav-buttons a:hover {
+    background: #90ba9d;
+    border-color: #90ba9d;
+}
+
+.nav-buttons:hover {
+    transform: scale(1.1);
+    transition: all 0.3s ease;
+}
+
+.filter-buttons button.active,
+.filter-select option:checked {
+    color:#90ba9d;
+}
+
+.filter-select {
+    display: none;
+}
+
+.grid {
+    margin: 0 auto;
+    padding: 60px;
+    width: auto;          /* allow shrink-to-fit */
+    max-width: 100%;      /* don’t overflow screen */
+  }
+  
+  .grid-sizer {
+    width: 300px;         /* must exactly match .tile width */
+  }
+  
+  .tile {
+    width: 300px;
+    margin-bottom: 20px;
+    float: left;          /* required by Masonry */
+  }  
+  
+  .tile img {
+    width: 100%;
+    height: auto; /* maintain original aspect ratio */
+    display: block;
+  }
+  
+
+.tile img {
+    width: 100%;
+    height: auto; /* Maintain original image height ratio */
+    display: block;
+}
+
+.tile.fading-out {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.tile.hidden {
+    display: none;
+}
+
+.tile.appearing {
+    opacity: 0;
+    transform: translateY(30px);
+}
+
+.tile img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.tile-hover {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1em;
+    text-align: center;
+}
+
+.tile:hover {
+    z-index: 2;
+    transform: scale(1.05);
+}
+
+.tile[data-link] {
+    cursor: pointer;
+}
+
+.tile:hover .tile-hover {
+    opacity: 1;
+}
+
+.tile-hover .title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.tile-hover .source {
+    font-size: 14px;
+    font-weight: 200;
+    margin-top: 12px;
+}
+
+.tile-hover p {
+    margin: 0;
+    line-height: 1.2;
+}
+
+/* Modal styles for enlarged images */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.modal-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+}
+
+/* Responsive layout */
+@media (max-width: 600px) {
+    .filter-buttons {
+        display: none;
+    }
+
+    .filter-select {
+        display: inline-block;
+        margin-right: 10px;
+    }
+
+    .nav-buttons {
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .filter-nav-container {
+        flex-wrap: wrap;
+        gap: 10px;
+        align-items: center;
+        justify-content: center;
+        flex-direction: row;
+    }
+}
