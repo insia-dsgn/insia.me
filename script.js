@@ -7,16 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
     
     // --- FUNCTIONS ---
 
-    // 1. Function to reveal the site
+    // reveal site
     const showSite = () => {
         document.body.classList.add("video-finished");
-        introContainer.style.display = 'none';
-        // Ensure content is visible immediately
-        mainContent.style.opacity = '1';
-        mainContent.style.transform = 'translateY(0)';
+        
+        // CHECK if element exists before styling it
+        if (introContainer) {
+            introContainer.style.display = 'none';
+        }
+        
+        if (mainContent) {
+            mainContent.style.opacity = '1';
+            mainContent.style.transform = 'translateY(0)';
+        }
     };
 
-    // 2. Function to run when video ends naturally
+    // when video ends
     const finishVideo = () => {
         document.body.classList.add("video-finished");
         
@@ -24,39 +30,38 @@ document.addEventListener("DOMContentLoaded", () => {
         sessionStorage.setItem('introPlayed', 'true');
         
         setTimeout(() => {
-            introContainer.style.display = 'none';
+            if (introContainer) introContainer.style.display = 'none';
         }, 500);
     };
 
-    // --- LOGIC ---
+    // --- INTRO LOGIC ---
 
-    // CHECK: Has the video already been played in this session?
+    // detect if the page was just reloaded
+    if (video) {
+        const navEntry = performance.getEntriesByType("navigation")[0];
+        if (navEntry && navEntry.type === 'reload') {
+            sessionStorage.removeItem('introPlayed');
+        }
+    }
+
+    // check storage to decide: Play or Skip?
     if (sessionStorage.getItem('introPlayed')) {
-        // YES: Skip video completely and show site immediately
-        console.log("Intro already played. Skipping.");
         showSite();
-        
-        // Optional: Pause video just in case it tried to buffer
         if(video) video.pause(); 
         
     } else {
-        // NO: Play the video logic
         if (video) {
-            // Listen for the end of the video
             video.addEventListener("ended", finishVideo);
-            
-            // Attempt to play
             video.play().catch(error => {
                 console.log("Autoplay prevented. Skipping intro.");
                 finishVideo();
             });
         } else {
-            // If on a page without video (like project pages), just show site
             showSite();
         }
     }
 
-    // --- PART 2: INTERACTIVE SHAPES LOGIC (Unchanged) ---
+    // --- INTERACTIVE SHAPES LOGIC ---
     const draggables = document.querySelectorAll('.draggable');
 
     draggables.forEach(el => {
