@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insia Haque</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Yarndings+20&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;800;900&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+    <div id="intro-container">
+        <video id="intro-video" autoplay muted playsinline>
+            <source src="vid/insia.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <main id="main-content">
+        
+        <aside class="sidebar">
+            <div class="logo-area" id="boundary">
+                <!-- <a href="index.html" style="text-decoration: none;"> -->
+                    <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.png" class="shape-visual" alt="shape"></div>
+                    <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.png" class="shape-visual" alt="shape"></div>
+                    <a href="index.html"><div class="brand-text">insia</div></a>
+                    <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.png" class="shape-visual" alt="shape"></div>
+                    <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.png" class="shape-visual" alt="shape"></div>
+                <!-- </a> -->
+            </div>
+
+            <nav class="side-nav">
+                <ul class="main-menu">
+                    <li><a href="about.html" class="nav-link">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="index.html" class="nav-link">work</a>
+                        <ul class="dropdown">
+                            <li><a href="illustrations.html">illustrations</a></li>
+                            <li><a href="innocence.html">innocence project</a></li>
+                            <li><a href="street.html">34th street magazine</a></li>
+                            <li><a href="dailypenn.html">the daily pennsylvanian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <div class="fish-wrapper swim-fast pos-1">
+                <img src="img/fish/goldfish.png" class="fish-visual" alt="fish">
+            </div>
+        
+            <div class="fish-wrapper swim-slow pos-2">
+                <img src="img/fish/swede.png" class="fish-visual" alt="fish">
+            </div>
+        
+            <div class="fish-wrapper swim-medium pos-3">
+                <img src="img/fish/rainbow.png" class="fish-visual" alt="fish">
+            </div>
+        
+            <div class="fish-wrapper swim-v-slow pos-4">
+                <img src="img/fish/minnow.png" class="fish-visual" alt="fish">
+            </div>
+        
+            <div class="fish-wrapper swim-fast-2 pos-5">
+                <img src="img/fish/striped.png" class="fish-visual" alt="fish">
+            </div>
+        </aside>
+
+
+        <section class="content-area category-page">
+            
+            <div class="category-hero">
+                <video 
+                    class="hero-video" 
+                    src="img/work/street/illustrations header.mp4" 
+                    autoplay muted loop playsinline>
+                </video> 
+                <script>
+                    const vid = document.getElementById("hero-vid");
+                    vid.playbackRate = 0.25;
+                </script>
+                
+                <h1 class="category-title">Illustrations</h1>
+                
+                <div class="category-details">
+                    <div class="detail-col">
+                        <h3>TIMELINE</h3>
+                        <p>2023 - Ongoing</p>
+                    </div>
+                    <div class="detail-col">
+                        <h3>ROLES</h3>
+                        <p>Design Editor (2025)<br>Creative Intern (Summer 2025)<br>Deputy Design Editor (2024)<br>Illustrator (2023, 2026)</p>
+                    </div>
+                    <div class="detail-col">
+                        <h3>CLIENTS</h3>
+                        <p>Innocence Project<br>34th Street Magazine<br>The Daily Pennsylvanian</p>
+                    </div>
+                    <div class="detail-col">
+                        <h3>TOOLS</h3>
+                        <p>Procreate<br>Illustrator<br>Photoshop</p>
+                    </div>
+                </div>
+                
+                <div class="category-context">
+                    <h3>CONTEXT</h3>
+                    <p>My editorial clients (the Innocence Project, 34th Street Magazine, and The Daily Pennsylvanian) cover a wide range of topics.
+                         I create stunning illustrations and photo manipulations to accompany articles, other digital content, and print product to
+                        elevate the stories being told, be they centered on victims of an unjust judicial system, student journalism on local Philadelphia
+                        news, or pop culture critiques.
+                        <br><br>
+                        My personal illustrations often depict my own emotions and stories, employing vibrant colors, textures, and geometric shapes.</p>
+                    <p class="see-more">SEE MORE: My work for the <a href="innocence.html">INNOCENCE PROJECT</a>, <a href="street.html">34TH STREET MAGAZINE</a>, and <a href="dailypenn.html">THE DAILY PENNSYLVANIAN</a></p>
+                </div>
+            </div>
+
+            <div class="highlighted-examples">
+                
+                <div class="example-block">
+                    <img src="img/work/innocence/Bird Card.png" alt="Bird Card Illustration" class="example-image">
+                    <h3 class="example-title">Illustrative Holiday Card Set</h3>
+                    <h4 class="example-subtitle">INNOCENCE PROJECT - August 2024</h4>
+                    <p class="example-description">Tasked with creating different versions of holiday cards emphasizing warmth, winter, and the spirit of giving. These cards are gifted to clients and donors.</p>
+                     <div class="project-meta">
+                        <span class="meta-label">SEE MORE:</span>
+                        <a href="innocence.html" target="_blank">INNOCENCE PROJECT</a>
+                    </div>
+                </div>
+
+                <div class="example-block">
+                    <img src="img/work/dp/Rowan.png" class="example-image">
+                    <h3 class="example-title">Marc Rowan helped draft the White House compact. The ideas echo his 2023 plan to reform Penn</h3>
+                    <h4 class="example-subtitle">THE DAILY PENNSYLVANIAN - October 2025</h4>
+                    <p class="example-description">Worked with The Daily Pennsylvanian, Inc.'s Executive Editor <a href="https://x.com/jasmineni_" target="_blank">Jasmine Ni</a> and Editor-in-Chief <a href="https://x.com/EthanMYoung_" target="_blank">Ethan Young</a> to develop graphics for a story covering the impact of the 2025 compact on Penn.</p>
+                     <div class="project-meta">
+                        <span class="meta-label">SEE MORE:</span>
+                        <a href="dailypenn.html" target="_blank">THE DAILY PENNSYLVANIAN</a>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="final-message">
+                <h3>LIKE WHAT YOU SEE? <a href="about.html">CONTACT ME!</a></h3>
+            </div>
+
+            <div class="gallery-section">
+                <div class="gallery-grid">
+                    <a href="https://www.thedp.com/article/2025/10/penn-marc-rowan-questions-trustees-compact" target="_blank"><img src="img/work/dp/Rowan.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2024/09/penn-kamala-harris-philadelphia-eagles-counterfeit-ad-artist-winston-tseng" target="_blank"><img src="img/work/dp/9:24 kamala graffiti.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2025/02/test-optional-crucial-number-should-define" target="_blank"><img src="img/work/dp/3:25 anti testing.png" class="gallery-image"></a>
+
+                    <a href="illustration/tayvis.html" target="_blank"><img src="img/work/street/Tayvis Engagement.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/09/virality-is-the-new-competence" target="_blank"><img src="img/work/street/The Emperor Has No Code.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/10/website-design-ai-templates-coding-creativity" target="_blank"><img src="img/work/street/WebDev.gif" class="gallery-image"></a>
+
+                    <a href="https://www.34st.com/article/2023/10/social-media-surveillance-foucault-bentham-panopticon" target="_blank"><img src="img/work/street/10:23 panopticon.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/06/ryan-coogler-sinners-michael-b-jordan-hailey-steinfield-review-jack-lamey" target="_blank"><img src="img/work/street/Sinners (Insia Haque).png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2023/09/barbie-mattel-warner-bros-greta-gerwig-hollywood" target="_blank"><img src="img/work/street/9:23 mattel cinematic universe.png" class="gallery-image"></a>
+
+                    <a href="innocence.html" target="_blank"><img src="img/work/innocence/Dinner Card.png" class="gallery-image"></a>
+                    <a href="innocence.html" target="_blank"><img src="img/work/innocence/Bird Card.png" class="gallery-image"></a>
+                    <a href="innocence.html" target="_blank"><img src="img/work/innocence/BrownBlue.png" class="gallery-image"></a>
+
+                    <a href="illustration/embrace.html" target="_blank"><img src="img/work/personal/Hug.png" class="gallery-image"></a>
+                    <a href="illustration/chuu.html" target="_blank"><img src="img/work/personal/Mona Chuusa.png" class="gallery-image"></a>
+                    <a href="illustration/kiss.html" target="_blank"><img src="img/work/personal/The Kiss.png" class="gallery-image"></a>
+
+                    <a href="https://www.thedp.com/article/2025/04/mini-crossword-04-17-25" target="_blank"><img src="img/work/dp/5:25 puzzles greens.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2025/01/penn-who-was-luigi-mangione-penn-connections" target="_blank"><img src="img/work/dp/Luigi.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2024/10/penn-undermined-intellectual-curiosity-shortcuts-elitism" target="_blank"><img src="img/work/dp/Cheating (Insia Haque).png" class="gallery-image"></a>
+
+                    <a href="https://www.34st.com/article/2023/09/maui-fires-tourism-hawaii-native-settler-colonialism-capitalism" target="_blank"><img src="img/work/street/9:23 tourism.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/11/bbno-self-titled-tiktok-album-review-srikar-venkatesan" target="_blank"><img src="img/work/street/bbnomoola.gif" class="gallery-image"></a>
+                    <a href="illustration/biden.html" target="_blank"><img src="img/work/street/Biden Drug Pricing.png" class="gallery-image"></a>
+
+                    <a href="innocence.html" target="_blank"><img src="img/work/innocence/Coldplay Featured Image.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/01/generation-gen-alpha-ipads-sephora-children-behavior" target="_blank"><img src="img/work/street/Gen Alpha (Insia Haque).png" class="gallery-image"></a>
+                    <a href="illustration/bidencenter.html" target="_blank"><img src="img/work/dp/Biden Center.png" class="gallery-image"></a>
+
+                    <a href="illustration/valentines.html" target="_blank"><img src="img/work/dp/Valentines Day.png" class="gallery-image"></a>
+                    <a href="illustration/plagiarism.html" target="_blank"><img src="img/work/dp/Cheating.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2024/12/penn-marriage-pact-physical-attraction-paradox" target="_blank"><img src="img/work/dp/Beauty Standards in Love (Insia Haque).png" class="gallery-image"></a>
+
+                    <a href="https://www.34st.com/article/2025/10/timberlake-bieber-one-direction-harry-styles-role-model-sombr" target="_blank"><img src="img/work/street/Death (and Rebirth) of the Male Popstar.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/07/benson-boone-mystique-moonbeam-ice-cream-tiktok-virality" target="_blank"><img src="img/work/street/Benson Boone (Insia Haque).png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/10/fortune-teller-8-ball-tarot-coin-flip-evil-wots" target="_blank"><img src="img/work/street/Goodbye Free Will; Hello Fortune Tellers (Insia Haque).png" class="gallery-image"></a>
+
+                    <a href="https://www.thedp.com/article/2024/07/penn-egyptian-fencer-hamza-malak-freshmen" target="_blank"><img src="img/work/street/malak hamza.png" class="gallery-image"></a>
+                    <a href="https://www.thedp.com/article/2025/02/test-mandatory-win-admissions-policy-penn" target="_blank"><img src="img/work/dp/3:25 pro testing.png" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/06/west-philadelphia-porchfest-music-dj-upenn-university-city-andy-niedermeier-chris-chambers-alternative-rock-jazz" target="_blank"><img src="img/work/street/Porchfest (Insia Haque).png" class="gallery-image"></a>
+
+                    <a href="illustration/OCD.html" target="_blank"><img src="img/work/street/OCD.gif" class="gallery-image"></a>
+                    <a href="illustration/subway.html" target="_blank"><img src="img/work/street/Subway.png" class="gallery-image"></a>
+                    <a href="illustration/PMA.html" target="_blank"><img src="img/work/street/PMA is PMO.gif" class="gallery-image"></a>
+
+                    <a href="https://www.34st.com/article/2025/12/street-2025-best-of-culture" target="_blank"><img src="img/work/street/Best of Culture.jpg" class="gallery-image"></a>
+                    <a href="innocence.html" target="_blank"><img src="img/work/innocence/just data.webp" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2024/10/ai-artificialintelligence-chatgpt-dalle-food-photography" target="_blank"><img src="img/work/street/AI Food Yummm (Insia Haque).png" class="gallery-image"></a>
+
+                    <a href="https://www.34st.com/article/2024/09/handbag-the-row-goyard-longchamp-neverfull-balenciaga-polene" target="_blank"><img src="img/work/street/Bag Hunt.jpg" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/10/london-fashion-week-ss26" target="_blank"><img src="img/work/street/London.jpg" class="gallery-image"></a>
+                    <a href="https://www.34st.com/article/2025/02/oscars-predictions-emilia-perez-film-academy-snub-nomination-demi-moore-conclave-brutalist-anora" target="_blank"><img src="img/work/street/Oscar Predictions.jpg" class="gallery-image"></a>
+
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-nav').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
