@@ -4,7 +4,7 @@
 body, html {
     width: 100%;
     height: 100%;
-    overflow: hidden; /* Prevents scroll during video */
+    overflow: hidden;
     background-color: #000000;
     font-family: 'Figtree', sans-serif;
     cursor: url("img/cursor/cursor_default.png") 4 12, auto;
@@ -348,6 +348,91 @@ body.video-finished #main-content {
 .fish-wrapper:hover .fish-visual {
     transform: rotate(15deg) scale(1.1); /* Tilt nose up */
 }
+
+/* ========================================= */
+/* 404 ERROR PAGE STYLES                     */
+/* ========================================= */
+
+.error-page-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #0d0c17; /* Match your main dark bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Centered Text Content --- */
+.error-content {
+    text-align: center;
+    z-index: 10; /* Above the fish */
+    position: relative;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.error-code {
+    font-family: 'Figtree', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: #eaeaea;
+    margin-bottom: 0;
+    line-height: 1;
+    letter-spacing: -5px;
+}
+
+.error-msg {
+    font-family: 'Figtree', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.error-desc {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 40px;
+}
+
+/* --- Back Link Button --- */
+.back-link {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #0d0c17;
+    background-color: #eaeaea;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: inline-block;
+}
+
+.back-link:hover {
+    transform: scale(1.05);
+    background-color: #fff;
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* --- Full Screen Fish Tank --- */
+.fish-tank-fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to background */
+    z-index: 1; /* Behind text */
+}
+
+/* Note: The fish wrapper animations (swimLeft, etc) 
+   are inherited from your existing CSS. 
+   We used inline styles in the HTML to specific 'top' positions 
+   so they spread out vertically. */
 
 /* ========================================= */
 /* MOBILE STYLES               */
