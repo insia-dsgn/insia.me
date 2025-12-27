@@ -1,0 +1,919 @@
+/* --- 1. GLOBAL RESET & FONTS --- */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body, html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden; /* Prevents scroll during video */
+    background-color: #000000;
+    font-family: 'Figtree', sans-serif;
+    cursor: url("img/cursor/cursor_default.png") 4 12, auto;
+}
+
+a {
+    color: #fff;
+}
+
+a:hover {
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* --- 2. VIDEO INTRO --- */
+#intro-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 9999;
+    background-color: #000;
+    transition: opacity 0.5s ease-out;
+}
+
+#intro-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Default: Crop to fill (Desktop) */
+}
+
+/* --- 3. MAIN LAYOUT (DESKTOP DEFAULT) --- */
+#main-content {
+    opacity: 0;
+    transition: opacity 0.8s ease-in, transform 0.8s ease-out;
+    transform: translateY(20px);
+    
+    /* Desktop: Sidebar Left, Content Right */
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+    height: 100vh;
+    background-color: #0d0c17;
+}
+
+/* Active State (Triggered by JS) */
+body.video-finished {
+    overflow: auto; 
+}
+
+body.video-finished #intro-container {
+    opacity: 0;
+    pointer-events: none;
+}
+
+body.video-finished #main-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- 4. SIDEBAR & LOGO (DESKTOP) --- */
+.sidebar {
+    width: 300px;
+    background-color: #000;
+    position: relative;
+    padding: 40px;
+    flex-shrink: 0;
+    z-index: 10;
+    overflow: hidden; /* Crops dragging shapes on desktop */
+}
+
+.logo-area {
+    position: relative;
+    width: 220px;
+    height: 180px;
+}
+
+.brand-text {
+    z-index: 1;
+    font-size: 82px;
+    font-weight: 400;
+    color: #eaeaea;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    letter-spacing: -2px;
+}
+
+/* --- 5. SHAPES (GLOBAL) --- */
+.shape-wrapper {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    cursor: grab;
+    user-select: none;
+    transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    z-index: 5;
+}
+
+.shape-wrapper:hover {
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+.shape-visual {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0px 10px 8px rgba(0, 0, 0, 0.3));
+    object-fit: contain;
+    pointer-events: none;
+    transition: transform 0.6s ease;
+}
+
+/* Desktop Positioning */
+.shape-wrapper.circle-pos   { top: 10px; left: 5px; z-index: 0;}
+.shape-wrapper.star-pos     { top: 20px; right: -5px; width: 70px; height: 70px; }
+.shape-wrapper.square-pos   { bottom: 15px; left: 2px; }
+.shape-wrapper.triangle-pos { bottom: 20px; right: 10px; width: 60px; height: 60px; z-index: 0;}
+
+
+/* --- 6. INTERACTION: HOVER (DESKTOP ONLY) --- */
+@media (hover: hover) {
+    .shape-wrapper:hover .shape-visual {
+        transform: rotate(360deg);
+        z-index: 20;
+    }
+}
+
+/* --- 7. CONTENT AREA --- */
+.content-area {
+    flex: 1;
+    padding: 40px;
+    overflow-y: auto;
+    color: #eaeaea;
+}
+
+.side-nav {
+    width: 100%;
+}
+
+.main-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Space between Work and Info */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #eaeaea;
+    font-size: 24px;
+    font-weight: 300;
+    display: block;
+    transition: color 0.2s ease;
+    text-align: center;
+}
+
+.nav-link:hover {
+    color: #888; /* Subtle hover effect */
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* Dropdown Styles */
+.dropdown {
+    list-style: none;
+    margin-top: 10px;
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+}
+
+.dropdown li a {
+    text-decoration: none;
+    color: #999; /* Slightly dimmer than main links */
+    font-size: 14px;
+    font-weight: 400;
+    transition: color 0.2s;
+    font-family: 'Cascadia Code', sans-serif;
+    font-weight: 300;
+    line-height: 1.4;
+}
+
+.dropdown li a:hover {
+    color: #fff;
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* Show dropdown on hover over the parent 'li' */
+.has-dropdown:hover .dropdown {
+    display: flex;
+}
+
+/* --- MASONRY GRID STYLES --- */
+.masonry-grid {
+    /* Creates the masonry layout */
+    column-count: 3; 
+    column-gap: 40px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.masonry-grid-2 {
+    /* Creates the masonry layout */
+    column-count: 2; 
+    column-gap: 40px;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.masonry-grid a {
+    text-decoration: none;
+}
+
+.grid-item {
+    /* Prevents an item from being split across two columns */
+    break-inside: avoid; 
+    margin-bottom: 20px; /* Space between items vertically */
+    
+    /* Optional: Card Styling */
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.grid-item:hover {
+    transform: translateY(-5px); /* Subtle lift on hover */
+}
+
+.grid-item img,
+.grid-item video {
+    width: 100%;
+    height: auto;
+    display: block; /* Removes bottom whitespace */
+}
+
+.caption {
+    padding-top: 15px;
+    padding-left: 3px;
+}
+
+.caption h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #fff;
+    font-family: 'Figtree', sans-serif;
+    font-weight: 200;
+}
+
+.caption p {
+    font-size: 14px;
+    color: #969696;
+    line-height: 1.4;
+    font-family: 'Cascadia Code', sans-serif;
+    font-weight: 300;
+}
+
+/* --- RESPONSIVE GRID --- */
+/* Add this to your existing Desktop styles or before mobile styles */
+
+@media screen and (max-width: 1200px) {
+    .masonry-grid {
+        column-count: 2; /* Drop to 2 columns on tablets/smaller laptops */
+    }
+}
+
+/* --- FISH TANK CONTAINER --- */
+.fish-tank {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 200px; /* Taller to fit 5 fish */
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* --- THE WRAPPER (Movement) --- */
+.fish-wrapper {
+    position: absolute;
+    right: -150px; /* Start off-screen RIGHT */
+    pointer-events: auto;
+    cursor: help;
+}
+
+/* --- THE IMAGE (Visuals) --- */
+.fish-visual {
+    width: 50px;
+    height: auto;
+    transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    /* filter: drop-shadow(0px 5px 5px rgba(0,0,0,0.3)); */
+}
+
+/* --- ANIMATION (Right to Left) --- */
+@keyframes swimLeft {
+    0% { right: -150px; }
+    100% { right: 100%; } /* Moves all the way left */
+}
+
+/* --- FISH SPEEDS --- */
+.swim-fast    { animation: swimLeft 10s linear infinite; }
+.swim-fast-2  { animation: swimLeft 12s linear infinite; animation-delay: 12s; }
+.swim-medium  { animation: swimLeft 5s linear infinite; animation-delay: 4s; }
+.swim-slow    { animation: swimLeft 8s linear infinite; animation-delay: 8s; }
+.swim-v-slow  { animation: swimLeft 12s linear infinite; animation-delay: 3s; }
+
+/* --- FISH POSITIONS & SIZES --- */
+/* Pos 1: Top area */
+.pos-1 { bottom: 200px; }
+.pos-1 .fish-visual { width: 40px;}
+
+/* Pos 2: Bottom heavy */
+.pos-2 { bottom: 20px; }
+.pos-2 .fish-visual { width: 80px; }
+
+/* Pos 3: Middle lane */
+.pos-3 { bottom: 100px; }
+.pos-3 .fish-visual { width: 150px; }
+
+/* Pos 4: Way back (small & dim) */
+.pos-4 { bottom: 130px; }
+.pos-4 .fish-visual { width: 60px; }
+
+/* Pos 5: Very bottom */
+.pos-5 { bottom: 5px; }
+.pos-5 .fish-visual { width: 120px;}
+
+
+/* --- INTERACTIONS --- */
+
+/* 1. Pause on Hover */
+.fish-wrapper:hover {
+    animation-play-state: paused;
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* 2. Look at Cursor (Rotate) */
+/* Since they face left now, we might rotate differently */
+.fish-wrapper:hover .fish-visual {
+    transform: rotate(15deg) scale(1.1); /* Tilt nose up */
+}
+
+/* ========================================= */
+/* 404 ERROR PAGE STYLES                     */
+/* ========================================= */
+
+.error-page-container {
+    width: 100%;
+    height: 100vh;
+    background-color: #0d0c17; /* Match your main dark bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* --- Centered Text Content --- */
+.error-content {
+    text-align: center;
+    z-index: 10; /* Above the fish */
+    position: relative;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.error-code {
+    font-family: 'Figtree', sans-serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: #eaeaea;
+    margin-bottom: 0;
+    line-height: 1;
+    letter-spacing: -5px;
+}
+
+.error-msg {
+    font-family: 'Figtree', sans-serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 20px;
+}
+
+.error-desc {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 14px;
+    color: #999;
+    margin-bottom: 40px;
+}
+
+/* --- Back Link Button --- */
+.back-link {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 16px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #0d0c17;
+    background-color: #eaeaea;
+    padding: 12px 24px;
+    border-radius: 50px;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: inline-block;
+}
+
+.back-link:hover {
+    transform: scale(1.05);
+    background-color: #fff;
+    cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
+}
+
+/* --- Full Screen Fish Tank --- */
+.fish-tank-fullscreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through to background */
+    z-index: 1; /* Behind text */
+}
+
+/* Note: The fish wrapper animations (swimLeft, etc) 
+   are inherited from your existing CSS. 
+   We used inline styles in the HTML to specific 'top' positions 
+   so they spread out vertically. */
+
+/* --- Debris Styles --- */
+
+.debris {
+    /* Randomize animation timing so they don't move in sync */
+    animation: floatDebris 6s ease-in-out infinite alternate;
+}
+
+/* Give each piece a slightly different speed */
+.debris:nth-child(1) { animation-duration: 7s; }
+.debris:nth-child(2) { animation-duration: 9s; animation-delay: 1s; }
+.debris:nth-child(3) { animation-duration: 8s; animation-delay: 2s; }
+.debris:nth-child(4) { animation-duration: 10s; animation-delay: 0s; }
+.debris:nth-child(5) { animation-duration: 6s; animation-delay: 3s; }
+
+@keyframes floatDebris {
+    0% {
+        transform: translate(0, 0) rotate(0deg);
+    }
+    100% {
+        /* Drifts slightly up/down and rotates */
+        transform: translate(10px, -20px) rotate(10deg);
+    }
+}
+
+/* Ensure they sit above the fish but below the text */
+.shape-wrapper.debris {
+    z-index: 5; 
+}
+
+.overlay-layer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    /* Dark tint using your theme color #0d0c17 with 50% opacity */
+    background-color: rgba(13, 12, 23, 0.6); 
+    
+    z-index: 8; /* Above fish/debris, below text */
+    pointer-events: none; /* Crucial: lets you still drag debris through the layer */
+}
+
+/* ========================================= */
+/* MOBILE STYLES               */
+/* ========================================= */
+
+@media screen and (max-width: 768px) {
+    
+    /* 1. Video displayed in full (No crop) */
+    #intro-video {
+        object-fit: contain; 
+        background-color: #000; /* Black bars for empty space */
+    }
+
+    /* 2. Layout Changes */
+    #main-content {
+        flex-direction: column; /* Stack sidebar on top of content */
+        height: auto;
+        min-height: 100vh;
+    }
+
+    /* 3. Top Bar (formerly Sidebar) */
+    .sidebar {
+        width: 100%;
+        height: 180px; /* Adjust based on your mockup height */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px;
+        overflow: visible; /* Let shapes breathe if needed */
+    }
+
+    /* 4. Logo Positioning */
+    .logo-area {
+        /* You can adjust width here to spread shapes out or pull them in */
+        width: 100%; 
+        max-width: 300px; 
+        height: 200px;
+    }
+    
+    .brand-text {
+        font-size: 64px; /* Slightly smaller for mobile */
+    }
+
+    /* 5. Mobile Shape Positioning (Adjust to match your PNG mockup) */
+    
+    /* Circle: Top Center-Left */
+    .shape-wrapper.circle-pos { 
+        top: 26px; 
+        left: 20%; 
+        z-index: 0;
+    }
+    
+    /* Star: Top Right */
+    .shape-wrapper.star-pos { 
+        top: 36px; 
+        right: 16%; 
+    }
+    
+    /* Square: Bottom Left */
+    .shape-wrapper.square-pos { 
+        bottom: 24px; 
+        left: 20%; 
+    }
+    
+    /* Triangle: Bottom Right */
+    .shape-wrapper.triangle-pos { 
+        bottom: 35px; 
+        right: 22%; 
+        z-index: 0;
+    }
+
+    /* 6. Interaction: Press to Spin */
+    .shape-wrapper:active .shape-visual {
+        transform: rotate(360deg);
+        transition: transform 0.4s ease; /* Faster spin for touch */
+    }
+
+    /* 7. Content Adjustments */
+    .content-area {
+        padding: 20px;
+    }
+    
+    nav {
+        flex-direction: column;
+        gap: 20px;
+        margin-bottom: 40px;
+    }
+    
+    .masonry-grid {
+        column-count: 1; /* Single column on mobile */
+    }
+}
+
+/* ========================================= */
+/* PROJECT DETAIL PAGES                      */
+/* ========================================= */
+
+.project-content {
+    width: 100%;
+    max-width: 1200px; /* Limits width on huge screens */
+    margin: 0 auto; /* Centers content */
+    padding-bottom: 80px;
+}
+
+/* --- Typography for Projects --- */
+.project-header {
+    margin-bottom: 2rem;
+}
+
+.project-title {
+    font-size: 48px;
+    font-weight: 400;
+    margin-bottom: 0.5rem;
+    color: #eaeaea;
+    letter-spacing: -1px;
+}
+
+.project-subtitle {
+    font-size: 14px;
+    font-weight: 300;
+    color: #999; /* Dimmer text */
+    margin-bottom: 2rem;
+}
+
+.project-description {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #eaeaea;
+    margin-bottom: 3rem;
+    max-width: 600px; /* Prevents lines from being too long to read */
+}
+
+.project-meta {
+    font-size: 14px;
+    font-weight: 200;
+    color: #eaeaea;
+    text-transform: uppercase;
+    font-family: 'Cascadia Code', sans-serif;
+    letter-spacing: 1px;
+    line-height: 1.8;
+}
+
+.meta-label {
+    display: block;
+    margin-bottom: 5px;
+    color: #999;
+}
+
+/* --- LAYOUT 1: HORIZONTAL (Standard Stack) --- */
+.layout-horizontal .project-image {
+    width: 100%;
+    height: auto;
+    max-height: 70vh; /* Don't take up more than 70% of screen height */
+    object-fit: cover;
+    margin-bottom: 40px;
+    background-color: #333; /* Placeholder color */
+}
+
+/* --- LAYOUT 2: VERTICAL (Side by Side) --- */
+.layout-vertical {
+    display: flex;
+    gap: 60px; /* Space between image and text */
+    align-items: flex-start; /* Align top */
+}
+
+.layout-vertical .image-col {
+    flex: 1; /* Takes up 50% roughly */
+}
+
+.layout-vertical .text-col {
+    flex: 1; /* Takes up 50% roughly */
+    padding-top: 20px; /* Optical alignment with image top */
+}
+
+.layout-vertical h3, .layout-horizontal h3 {
+    color: #999;
+    font-family: 'Cascadia Code', sans-serif;
+    font-weight: 200;
+    line-height: 0;
+}
+
+.layout-vertical h1, .layout-horizontal h1 {
+    padding-bottom: 16px;
+}
+
+.layout-vertical .project-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #333;
+}
+
+.layout-vertical .project-image,
+.layout-vertical video {      /* Added selector for video tags */
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #333;
+}
+
+/* --- RESPONSIVE FOR PROJECTS --- */
+@media screen and (max-width: 900px) {
+    /* Force Vertical Layout to stack on tablets/mobile */
+    .layout-vertical {
+        flex-direction: column;
+        gap: 40px;
+    }
+    
+    .project-title {
+        font-size: 36px;
+    }
+}
+
+/* ========================================= */
+/* CATEGORY PAGE STYLES                      */
+/* ========================================= */
+
+.content-area.category-page {
+    color: #eaeaea;
+    padding-bottom: 100px;
+}
+
+/* --- 1. HERO SECTION --- */
+.category-hero {
+    margin-bottom: 80px;
+}
+
+.hero-image-placeholder {
+    width: 100%;
+    height: 400px; /* Adjust height as needed */
+    background-color: #999;
+    margin-bottom: 40px;
+}
+
+.category-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    margin-bottom: 40px;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.category-details {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 60px;
+    font-family: 'Cascadia Code', monospace;
+    font-weight: 300;
+}
+
+.detail-col {
+    flex: 1;
+    padding-right: 20px;
+}
+
+.detail-col h3, .category-context h3, h3 {
+    font-size: 16px;
+    font-weight: 400;
+    color: #eaeaea; 
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-col p {
+    font-size: 14px;
+    line-height: 1.5;
+    color: #eaeaea;
+}
+
+.category-context {
+    margin-top: 60px;
+}
+
+.category-context p, .reg {
+    font-family: 'Figtree', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 20px;
+    color: #eaeaea;
+    font-weight: 300;
+}
+
+/* Updated See More Style */
+.see-more, 
+.see-more a {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 16px;
+    color: #999;
+    text-transform: uppercase;
+    font-weight: 300; 
+    margin-top: 20px;
+}
+
+.see-more a {
+    text-decoration: underline;
+}
+
+
+/* --- 2. HIGHLIGHTED EXAMPLES SECTION --- */
+.hero-video, .hero-img {
+    width: 100%;
+    height: auto;       /* Maintains the video's aspect ratio */
+    display: block;     /* Removes bottom gap */
+    margin-bottom: 40px; /* Matches your previous spacing */
+    
+    /* OPTIONAL: If you want it to be a strict banner height like 400px */
+    height: 400px;
+    object-fit: cover;
+}
+
+.highlighted-examples {
+    margin-bottom: 100px;
+}
+
+.example-block {
+    margin-bottom: 80px;
+}
+
+.example-image-placeholder {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    background-color: #999;
+    margin-bottom: 30px;
+}
+
+.example-image {
+    width: 80%;        /* Forces image to fit the container width */
+    height: auto;       /* Calculates height automatically to keep aspect ratio */
+    display: block;     /* Removes tiny gap at bottom of images */
+    margin-bottom: 30px; /* Adds space between image and title */
+    object-fit: contain; /* Ensures the whole image is visible */
+}
+
+.example-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 32px;
+    font-weight: 400;
+    margin-bottom: 5px;
+    color: #fff;
+}
+
+.example-subtitle {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 16px;
+    font-weight: 300;
+    color: #999;
+    margin-bottom: 20px;
+}
+
+.example-description {
+    font-family: 'Cascadia Code', monospace; /* Match mockup body font */
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-bottom: 20px;
+    color: #eaeaea;
+    font-weight: 300;
+}
+
+
+/* --- 3. GALLERY SECTION --- */
+.gallery-section {
+    margin-bottom: 100px;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns */
+    gap: 20px;
+}
+
+.gallery-item-placeholder {
+    width: 100%;
+    padding-bottom: 66%; /* Creates a 3:2 aspect ratio rectangle */
+    background-color: #999;
+}
+
+.gallery-image {
+    width: 100%;        /* Fills the column width */
+    height: 100%;       /* Fills the height if you want uniform squares */
+    object-fit: cover;  /* Crops image to fill the square without distorting */
+    display: block;     /* Removes bottom spacing gap */
+    
+    /* Optional: Add rounded corners or transitions */
+    /* border-radius: 4px; */
+    /* transition: opacity 0.3s ease; */
+}
+
+/* Optional hover effect */
+.gallery-image:hover {
+    opacity: 0.8;
+}
+
+/* --- 4. FINAL MESSAGE SECTION --- */
+.final-message h3 {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 20px;
+    font-weight: 400;
+    color: #eaeaea;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.final-message p {
+    font-family: 'Figtree', sans-serif;
+    font-size: 24px;
+    line-height: 1.4;
+    max-width: 800px;
+    color: #eaeaea;
+}
+
+
+/* --- RESPONSIVE DESIGN --- */
+@media screen and (max-width: 1024px) {
+    .category-details {
+        flex-wrap: wrap;
+        gap: 30px;
+    }
+    .detail-col {
+        flex-basis: 45%; /* 2 columns on tablet */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .category-title { font-size: 48px; }
+    
+    .category-details {
+        flex-direction: column; /* 1 column on mobile */
+    }
+    
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns for gallery on mobile */
+    }
+    
+    .final-message p { font-size: 20px; }
+    
+}
