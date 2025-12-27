@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insia Haque</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Yarndings+20&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;800;900&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+
+    <main id="main-content" style="opacity: 1; transform: translateY(0);">
+        
+        <aside class="sidebar">
+            <div class="logo-area" id="boundary">
+                <a href="../index.html" style="text-decoration: none;">
+                    <div class="shape-wrapper circle-pos draggable"><img src="../img/logo/Ellipse.png" class="shape-visual"></div>
+                    <div class="shape-wrapper star-pos draggable"><img src="../img/logo/Star.png" class="shape-visual"></div>
+                    <div class="brand-text">insia</div>
+                    <div class="shape-wrapper square-pos draggable"><img src="../img/logo/Rectangle.png" class="shape-visual"></div>
+                    <div class="shape-wrapper triangle-pos draggable"><img src="../img/logo/Triangle.png" class="shape-visual"></div>
+                </a>
+            </div>
+
+            <nav class="side-nav">
+                <ul class="main-menu">
+                    <li><a href="../about.html" class="nav-link">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="../index.html" class="nav-link">work</a>
+                        <ul class="dropdown">
+                            <li><a href="../illustrations.html">illustrations</a></li>
+                            <li><a href="../innocence.html">innocence project</a></li>
+                            <li><a href="../street.html">34th street magazine</a></li>
+                            <li><a href="../dailypenn.html">the daily pennsylvanian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="fish-wrapper swim-fast pos-1">
+                <img src="../img/fish/goldfish.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-slow pos-2">
+                <img src="../img/fish/swede.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-medium pos-3">
+                <img src="../img/fish/rainbow.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-v-slow pos-4">
+                <img src="../img/fish/minnow.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-fast-2 pos-5">
+                <img src="../img/fish/striped.png" class="fish-visual" alt="fish">
+            </div>
+        </aside>
+
+        <section class="content-area">
+            <div class="project-content layout-horizontal">
+                
+                <img src="https://s3.amazonaws.com/snwceomedia/dpn-34s/7cc07fe4-1c9a-4fde-b84b-df9835a3c707.sized-1000x1000.gif?w=1000" class="project-image">
+
+                <div class="text-content">
+                    <h1 class="project-title">A Newer, Stupider Amateur Web</h1>
+                    <h3 class="project-subtitle">34TH STREET MAGAZINE - October 2025</h3>
+                    <h3 class="project-subtitle">ROLE: Design Editor, Creative Director</h3>
+                    
+                    <p class="project-description">
+                        This editorial illustration accompanies my <a href="https://www.34st.com/article/2025/10/website-design-ai-templates-coding-creativity" target="_blank">article on the rising popularity of vibe coding</a>
+                        in web development spaces for 34th Street Magazine.
+                    </p>
+
+                    <div class="project-meta">
+                        <span class="meta-label">SEE MORE:</span>
+                        <a href="../illustrations.html">ILLUSTRATIONS</a><br>
+                        <a href="../street.html">34TH STREET MAGAZINE</a><br>
+                        <a href="../index.html">SELECTED WORK</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="../script.js"></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-nav').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insia Haque</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Yarndings+20&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@300;400;600;800;900&display=swap" rel="stylesheet">    
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+
+    <main id="main-content" style="opacity: 1; transform: translateY(0);">
+        
+        <aside class="sidebar">
+            <div class="logo-area" id="boundary">
+                <a href="../index.html" style="text-decoration: none;">
+                    <div class="shape-wrapper circle-pos draggable"><img src="../img/logo/Ellipse.png" class="shape-visual"></div>
+                    <div class="shape-wrapper star-pos draggable"><img src="../img/logo/Star.png" class="shape-visual"></div>
+                    <div class="brand-text">insia</div>
+                    <div class="shape-wrapper square-pos draggable"><img src="../img/logo/Rectangle.png" class="shape-visual"></div>
+                    <div class="shape-wrapper triangle-pos draggable"><img src="../img/logo/Triangle.png" class="shape-visual"></div>
+                </a>
+            </div>
+
+            <nav class="side-nav">
+                <ul class="main-menu">
+                    <li><a href="../about.html" class="nav-link">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="../index.html" class="nav-link">work</a>
+                        <ul class="dropdown">
+                            <li><a href="../illustrations.html">illustrations</a></li>
+                            <li><a href="../innocence.html">innocence project</a></li>
+                            <li><a href="../street.html">34th street magazine</a></li>
+                            <li><a href="../dailypenn.html">the daily pennsylvanian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="fish-wrapper swim-fast pos-1">
+                <img src="../img/fish/goldfish.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-slow pos-2">
+                <img src="../img/fish/swede.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-medium pos-3">
+                <img src="../img/fish/rainbow.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-v-slow pos-4">
+                <img src="../img/fish/minnow.png" class="fish-visual" alt="fish">
+            </div>
+            <div class="fish-wrapper swim-fast-2 pos-5">
+                <img src="../img/fish/striped.png" class="fish-visual" alt="fish">
+            </div>
+        </aside>
+
+
+        <section class="content-area">
+            
+            <div class="project-content layout-vertical">
+
+                <div class="image-col">
+                    <a href="https://www.instagram.com/p/DPwPRWdjbn-/" target="_blank">
+                        <video class="project-image" src="../img/work/personal/Overwhelmed.mp4" autoplay muted loop playsinline></video>
+                    </a>
+                </div>
+
+                <div class="text-col">
+                    <h1 class="project-title">On the Amtrak Back From Fall Break</h1>
+                    <h3 class="project-subtitle">PERSONAL ILLUSTRATION - October 2025</h3>
+                    
+                    <p class="project-description">
+                        As the extended title (<i>On the Amtrak back from New York City after the least refreshing
+                        fall break of all time and I have multiple exams today and didn’t study for any of them
+                        and I am missing several deadlines and it’s all my fault</i>) explains, this piece was made
+                        on my trip back to campus.
+                        <br><br>
+                        I often feel paralyzed by rapid, repetitive nature of college life, between studying and
+                        all nighters in my messy dorm, social functions that drained my battery, and needing to
+                        take care of my most basic needs. This piece was my attempt at capturing that feeling.
+                    </p>
+
+                    <div class="project-meta">
+                        <span class="meta-label">SEE MORE:</span>
+                        <a href="illustrations.html">ILLUSTRATIONS</a><br>
+                        MY INSTAGRAM <a href="https://www.instagram.com/p/DPwPRWdjbn-/" target="_blank">@homaqe</a><br>
+                        <a href="index.html">SELECTED WORK</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function toggleMenu() {
+            document.getElementById('mobile-nav').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('open');
+        }
+    </script>
+</body>
+</html>s
