@@ -725,8 +725,11 @@ body.video-finished #main-content {
     font-weight: 400;
     color: #eaeaea; 
     margin-bottom: 10px;
-    text-transform: uppercase;
     letter-spacing: 1px;
+}
+
+.detail-col h3, .category-context h3 {
+    text-transform: uppercase;
 }
 
 .detail-col p {
@@ -1071,9 +1074,24 @@ body.video-finished #main-content {
     /* Pos 5: Very bottom */
     .pos-5 { bottom: 5px; }
     .pos-5 .fish-visual { width: 60px; opacity: 40%; }
+
+    /* Make detail columns 2x2 */
+    .category-details {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
+        gap: 30px 20px; /* 30px vertical gap, 20px horizontal gap */
+        flex-wrap: wrap; /* Fallback */
+        margin-bottom: 40px;
+    }
+
+    /* Remove the default right padding so they center nicely */
+    .detail-col {
+        padding-right: 0;
+        flex: none; /* Disable flex sizing */
+    }
 }
 
 /* Hide Hamburger on Desktop */
-@media screen and (min-width: 769px) {
+@media screen and (min-width: 768px) {
     .hamburger { display: none; }
 }
