@@ -676,18 +676,6 @@ body.video-finished #main-content {
     background-color: #333;
 }
 
-/* --- RESPONSIVE FOR PROJECTS --- */
-@media screen and (max-width: 900px) {
-    /* Force Vertical Layout to stack on tablets/mobile */
-    .layout-vertical {
-        flex-direction: column;
-        gap: 40px;
-    }
-    
-    .project-title {
-        font-size: 36px;
-    }
-}
 
 /* ========================================= */
 /* CATEGORY PAGE STYLES                      */
@@ -892,28 +880,200 @@ body.video-finished #main-content {
 }
 
 
-/* --- RESPONSIVE DESIGN --- */
-@media screen and (max-width: 1024px) {
-    .category-details {
-        flex-wrap: wrap;
-        gap: 30px;
-    }
-    .detail-col {
-        flex-basis: 45%; /* 2 columns on tablet */
-    }
-}
+/* ========================================= */
+/* MOBILE STYLES (Single Column + Hamburger) */
+/* ========================================= */
 
 @media screen and (max-width: 768px) {
-    .category-title { font-size: 48px; }
     
-    .category-details {
-        flex-direction: column; /* 1 column on mobile */
+    /* 1. Reset Layout to Single Column */
+    #main-content {
+        flex-direction: column;
+        height: auto;
+        min-height: 100vh;
+    }
+
+    /* 2. Hide Desktop Sidebar & Nav */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        padding: 20px;
+        background-color: #000;
+        position: relative; /* Keep relative for shapes */
+        z-index: 100;
+        display: flex;
+        justify-content: space-between; /* Space logo and hamburger */
+        align-items: center;
+        overflow: visible; 
+    }
+
+    /* make "insia" go to front */
+    .brand-text {
+        z-index: 1000;
+    }
+
+    /* Hide the standard side-nav list on mobile initially */
+    .side-nav {
+        display: none; 
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.95);
+        z-index: 99;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Show nav when 'active' class is added via JS */
+    .side-nav.active {
+        display: flex;
+    }
+
+    /* 3. Hamburger Menu Button Styles */
+    .hamburger {
+        display: block; /* Visible only on mobile */
+        background: none;
+        border: none;
+        cursor: pointer;
+        z-index: 101; /* Above the overlay nav */
+        padding: 10px;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 30px;
+        height: 2px;
+        margin-bottom: 6px;
+        background-color: #fff;
+        transition: all 0.3s ease;
+    }
+
+    /* Hamburger Animation to 'X' */
+    .hamburger.open span:nth-child(1) {
+        transform: rotate(45deg) translate(5px, 6px);
+    }
+    .hamburger.open span:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.open span:nth-child(3) {
+        transform: rotate(-45deg) translate(5px, -6px);
+    }
+
+    /* 4. Logo Adjustments for Header */
+    .logo-area {
+        width: 150px; /* Smaller logo area */
+        height: 80px;
+    }
+    .brand-text {
+        font-size: 40px; /* Smaller text */
+    }
+    /* Scale down shapes for header */
+    .shape-wrapper { transform: scale(0.6); } 
+    .shape-wrapper:hover { transform: scale(0.6) rotate(360deg); }
+
+    /* 5. Content Area Adjustments */
+    .content-area {
+        padding: 20px;
+        padding-top: 40px; 
+    }
+
+    /* 6. Mobile Typography & Grid */
+    .project-title, .category-title { font-size: 36px; }
+    
+    .masonry-grid, .gallery-grid {
+        column-count: 1; /* Single column grid */
+        column-gap: 0;
     }
     
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr); /* 2 columns for gallery on mobile */
+    .layout-vertical {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* Mobile Menu Links */
+    .main-menu {
+        align-items: center;
+        gap: 30px;
+    }
+    .nav-link { font-size: 32px; }
+    
+    /* Ensure dropdowns are visible in mobile menu */
+    .dropdown {
+        display: flex;
+        margin-top: 15px;
+    }
+    .dropdown li a { font-size: 18px; }
+
+    /* --- LOGO UPDATES --- */
+    
+    /* 1. Hide all shapes in the logo area */
+    .logo-area .shape-wrapper {
+        display: none !important;
+    }
+
+    /* 2. Center and style the 'insia' text */
+    .logo-area {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+
+    .brand-text {
+        position: static; /* Remove absolute positioning */
+        transform: none;  /* Remove centering translate */
+        font-size: 50px;  /* Adjust size for mobile header */
+        text-align: center;
+    }
+
+    /* --- HAMBURGER MENU LINKS --- */
+
+    /* 3. Make the dropdown items (Work categories) always visible */
+    .dropdown {
+        display: flex !important; /* Force open */
+        flex-direction: column;
+        gap: 15px;
+        margin-top: 15px;
+    }
+
+    /* Optional: Indent sub-links slightly or make them smaller */
+    .dropdown li a {
+        font-size: 20px; /* Readable size for mobile tap */
+        color: #999;
     }
     
-    .final-message p { font-size: 20px; }
-    
+    /* Adjust main links spacing */
+    .main-menu {
+        gap: 25px;
+    }
+
+    /* modify fish */
+    /* --- FISH POSITIONS & SIZES --- */
+    /* Pos 1: Top area */
+    .pos-1 { bottom: 50px; }
+    .pos-1 .fish-visual { width: 20px; opacity: 40%; }
+
+    /* Pos 2: Bottom heavy */
+    .pos-2 { bottom: 10px; }
+    .pos-2 .fish-visual { width: 40px; opacity: 40%; }
+
+    /* Pos 3: Middle lane */
+    .pos-3 { bottom: 25px; }
+    .pos-3 .fish-visual { width: 75px; opacity: 40%; }
+
+    /* Pos 4: Way back (small & dim) */
+    .pos-4 { bottom: 70px; }
+    .pos-4 .fish-visual { width: 30px; opacity: 40%; }
+
+    /* Pos 5: Very bottom */
+    .pos-5 { bottom: 5px; }
+    .pos-5 .fish-visual { width: 60px; opacity: 40%; }
+}
+
+/* Hide Hamburger on Desktop */
+@media screen and (min-width: 769px) {
+    .hamburger { display: none; }
 }
