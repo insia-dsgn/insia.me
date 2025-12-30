@@ -21,21 +21,28 @@
     <main id="main-content">
         
         <aside class="sidebar">
+        
             <div class="logo-area" id="boundary">
-                <!-- <a href="index.html" style="text-decoration: none;"> -->
+                <a href="index.html" style="text-decoration: none;">
                     <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.png" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.png" class="shape-visual" alt="shape"></div>
-                    <a href="index.html"><div class="brand-text">insia</div></a>
+                    <div class="brand-text">insia</div>
                     <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.png" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.png" class="shape-visual" alt="shape"></div>
-                <!-- </a> -->
+                </a>
             </div>
 
-            <nav class="side-nav">
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        
+            <nav class="side-nav" id="mobile-nav">
                 <ul class="main-menu">
                     <li><a href="about.html" class="nav-link">about</a></li>
+                    
                     <li class="has-dropdown">
                         <a href="index.html" class="nav-link">work</a>
+                        
                         <ul class="dropdown">
                             <li><a href="illustrations.html">illustrations</a></li>
                             <li><a href="innocence.html">innocence project</a></li>
@@ -45,24 +52,13 @@
                     </li>
                 </ul>
             </nav>
-            <div class="fish-wrapper swim-fast pos-1">
-                <img src="img/fish/goldfish.png" class="fish-visual" alt="fish">
-            </div>
-        
-            <div class="fish-wrapper swim-slow pos-2">
-                <img src="img/fish/swede.png" class="fish-visual" alt="fish">
-            </div>
-        
-            <div class="fish-wrapper swim-medium pos-3">
-                <img src="img/fish/rainbow.png" class="fish-visual" alt="fish">
-            </div>
-        
-            <div class="fish-wrapper swim-v-slow pos-4">
-                <img src="img/fish/minnow.png" class="fish-visual" alt="fish">
-            </div>
-        
-            <div class="fish-wrapper swim-fast-2 pos-5">
-                <img src="img/fish/striped.png" class="fish-visual" alt="fish">
+            
+            <div class="fish-tank">
+                <div class="fish-wrapper swim-fast pos-1"><img src="img/fish/goldfish.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-slow pos-2"><img src="img/fish/swede.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-medium pos-3"><img src="img/fish/rainbow.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-v-slow pos-4"><img src="img/fish/minnow.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-fast-2 pos-5"><img src="img/fish/striped.png" class="fish-visual" alt="fish"></div>
             </div>
         </aside>
 

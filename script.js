@@ -105,3 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
         el.addEventListener('mousedown', onMouseDown);
     });
 });
+
+function toggleMenu() {
+    document.getElementById('mobile-nav').classList.toggle('active');
+    document.querySelector('.hamburger').classList.toggle('open');
+}
