@@ -882,6 +882,74 @@ body.video-finished #main-content {
     color: #eaeaea;
 }
 
+/* ========================================= */
+/* ABOUT PAGE STYLES                         */
+/* ========================================= */
+
+.about-layout {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr; /* Left column slightly wider than right */
+    gap: 80px; /* Space between columns */
+    max-width: 1200px;
+    margin-top: 40px;
+}
+
+/* --- Left Column (Bio) --- */
+.about-title {
+    font-family: 'Figtree', sans-serif;
+    font-size: 64px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 40px;
+    line-height: 1.1;
+}
+
+.bio-body p {
+    font-family: 'Figtree', sans-serif;
+    font-size: 20px;
+    font-weight: 300;
+    color: #eaeaea;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* --- Right Column (Info) --- */
+.info-col {
+    padding-top: 10px; /* Optical alignment with the Title */
+}
+
+.info-block {
+    margin-bottom: 50px;
+}
+
+.info-block h3 {
+    font-family: 'Figtree', sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    color: #eaeaea;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.mono-text {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 14px;
+    font-weight: 300;
+    color: #eaeaea;
+    line-height: 1.8;
+}
+
+/* Links in the info column */
+.mono-text a {
+    color: #eaeaea;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+}
+
+.mono-text a:hover {
+    color: #fff;
+}
 
 /* ========================================= */
 /* MOBILE STYLES (Single Column + Hamburger) */
@@ -1088,6 +1156,20 @@ body.video-finished #main-content {
     .detail-col {
         padding-right: 0;
         flex: none; /* Disable flex sizing */
+    }
+
+    .about-layout {
+        grid-template-columns: 1fr; /* Stack vertically */
+        gap: 60px;
+        margin-top: 0;
+    }
+    
+    .about-title {
+        font-size: 48px;
+    }
+    
+    .bio-body p {
+        font-size: 18px;
     }
 }
 

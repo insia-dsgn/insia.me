@@ -1,3 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <meta http-equiv="refresh" content="0; url=404.html" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Insia Haque</title>
+    <link rel="icon" type="image/x-icon" href="img/cursor/cursor_star.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Figtree:wght@300;400;600;800;900&family=Yarndings+20&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
 </head>
+<body>
+
+    <main id="main-content">
+        
+        <aside class="sidebar">
+        
+            <div class="logo-area" id="boundary">
+                    <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.png" class="shape-visual" alt="shape"></div>
+                    <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.png" class="shape-visual" alt="shape"></div>
+                    <a href="index.html" style="text-decoration: none;"><div class="brand-text">insia</div></a>
+                    <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.png" class="shape-visual" alt="shape"></div>
+                    <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.png" class="shape-visual" alt="shape"></div>
+            </div>
+
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        
+            <nav class="side-nav" id="mobile-nav">
+                <ul class="main-menu">
+                    <li><a href="about.html" class="nav-link">about</a></li>
+                    
+                    <li class="has-dropdown">
+                        <a href="index.html" class="nav-link">work</a>
+                        
+                        <ul class="dropdown">
+                            <li><a href="illustrations.html">illustrations</a></li>
+                            <li><a href="innocence.html">innocence project</a></li>
+                            <li><a href="street.html">34th street magazine</a></li>
+                            <li><a href="dailypenn.html">the daily pennsylvanian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="fish-tank">
+                <div class="fish-wrapper swim-fast pos-1"><img src="img/fish/goldfish.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-slow pos-2"><img src="img/fish/swede.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-medium pos-3"><img src="img/fish/rainbow.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-v-slow pos-4"><img src="img/fish/minnow.png" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-fast-2 pos-5"><img src="img/fish/striped.png" class="fish-visual" alt="fish"></div>
+            </div>
+        </aside>
+
+        <section class="content-area">
+                <div class="about-layout">
+        
+                    <div class="bio-col">
+                        <h1 class="about-title">Hi, I’m Insia :)</h1>
+                        
+                        <div class="bio-body">
+                            <p>
+                                I am an artist and designer from Harlem, New York, studying cognitive science (and a number 
+                                of other things!) at Penn.
+                            </p>
+                            <p>
+                                I’m passionate about all things that make us human—the inner workings of the mind, the 
+                                language we speak, and the things we create to document our lives and pass time. I also love 
+                                knitting, painting, and crafting in general.
+                            </p>
+                            <p>
+                                My biggest goal is to create meaningful design for social impact. I previously designed the 
+                                Innocence Project and 34th Street Magazine, using art and design to draw eyes to the 
+                                stories that matter.
+                            </p>
+                        </div>
+                    </div>
+            
+                    <div class="info-col">
+                        
+                        <div class="info-block">
+                            <h3>EXPERIENCE</h3>
+                            <p class="mono-text">
+                                Innocence Project / Creative Intern<br>
+                                34th Street Magazine / Design Editor
+                            </p>
+                        </div>
+            
+                        <div class="info-block">
+                            <h3>EDUCATION</h3>
+                            <p class="mono-text">
+                                University of Pennsylvania / B.A. in Cognitive Science (minors in Design, Linguistics, Psych)<br>
+                                Bard College / A.A. Liberal Arts and Sciences
+                            </p>
+                        </div>
+            
+                        <div class="info-block">
+                            <h3>CONTACT</h3>
+                            <p class="mono-text">
+                                <a href="https://drive.google.com/file/d/11oa7mMFdN0OntFoc-JEkMKch92bSyR24/view?usp=sharing" target="_blank">Resume</a> / <a href="https://linkedin.com/in/insiahaque" target="_blank">Linkedin</a><br>
+                                Email: <a href="mailto:insia@sas.upenn.edu">insia@sas.upenn.edu</a>
+                            </p>
+                        </div>
+            
+                        <div class="info-block">
+                            <h3>FIND MORE OF ME</h3>
+                            <p class="mono-text">
+                                Arts & Style: <a href="https://www.34st.com/staff/insia-haque" target="_blank">read my words!</a><br>
+                                Instagram: <a href="https://instagram.com/homaqe" target="_blank">@homaqe</a><br>
+                                Twitter: <a href="https://twitter.com/insiahaque" target="_blank">@insiahaque</a>
+                            </p>
+                        </div>
+            
+                    </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
