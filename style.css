@@ -65,6 +65,96 @@ body.video-finished #main-content {
     transform: translateY(0);
 }
 
+/* --- LOADING SCREEN --- */
+#loading-screen {
+    position: fixed;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #0d0c17; /* Matches your main-content bg */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000; /* Above everything, including intro video */
+    transition: opacity 0.6s ease-in-out, visibility 0.6s;
+}
+
+.loader-content {
+    text-align: center;
+}
+
+.loader-brand {
+    font-family: 'Figtree', sans-serif;
+    font-size: 82px;
+    font-weight: 400;
+    color: #eaeaea;
+    letter-spacing: -2px;
+    margin-bottom: 10px;
+    /* Subtle breathing animation */
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.loader-status {
+    font-family: 'Cascadia Code', monospace;
+    font-size: 12px;
+    color: #999;
+    letter-spacing: 2px;
+}
+
+/* Ensure fish are visible but behind the brand text */
+#loading-screen .fish-tank-fullscreen {
+    z-index: 1;
+}
+
+#loading-screen .loader-content {
+    position: relative;
+    z-index: 2;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.6; transform: scale(0.98); }
+}
+
+/* Class to hide it via JS */
+#loading-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-shapes {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 30px;
+}
+
+.load-shape {
+    width: 30px; /* Smaller versions for the loader */
+    height: 30px;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.3));
+    animation: slowRotate 4s linear infinite;
+}
+
+/* Stagger the rotations slightly for a more organic feel */
+.star-spin     { animation-duration: 5s; }
+.square-spin   { animation-duration: 6s; animation-direction: reverse; }
+.triangle-spin { animation-duration: 4.5s; }
+.circle-spin   { animation-duration: 7s; }
+
+@keyframes slowRotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Ensure the loader brand pulse and shape rotation coexist smoothly */
+.loader-brand {
+    animation: pulse 3s infinite ease-in-out;
+}
+
 /* --- 4. SIDEBAR & LOGO (DESKTOP) --- */
 .sidebar {
     width: 300px;
