@@ -1,3 +1,17 @@
+window.addEventListener("load", () => {
+    const loader = document.getElementById("loading-screen");
+    
+    // Minimal delay to ensure the user sees the animation 
+    // and the layout is fully settled
+    setTimeout(() => {
+        loader.classList.add("hidden");
+        
+        setTimeout(() => {
+            loader.style.display = "none";
+        }, 600); // Wait for the CSS transition to finish
+    }, 1000); 
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     
     // --- VARIABLES ---
