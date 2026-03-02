@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuro-Topography Exhibition | Insia Haque</title>
+    <link rel="icon" type="image/x-icon" href="img/cursor/cursor_star.png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&family=Figtree:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        .content-area { padding: 0; overflow: hidden; position: relative; }
+        #webgl-container { width: 100%; height: 100vh; display: block; }
+        
+        /* --- NEW: FEATHER GRADIENT --- */
+        .gradient-overlay {
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 200px;
+            background: linear-gradient(to top, rgba(13, 12, 23, 1) 0%, rgba(13, 12, 23, 0) 100%);
+            pointer-events: none; z-index: 5;
+        }
+
+        .exhibition-ui {
+            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
+            text-align: center; pointer-events: none; z-index: 10;
+        }
+        .exhibition-ui h1 {
+            font-family: 'Figtree', sans-serif; font-size: 24px; font-weight: 300;
+            color: #eaeaea; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+        }
+        .exhibition-ui p { font-family: 'Cascadia Code', monospace; font-size: 12px; color: #999; }
+        
+        #preloader {
+            position: fixed; top: 0; left: 300px; right: 0; bottom: 0;
+            background-color: #0d0c17; display: flex; justify-content: center;
+            align-items: center; z-index: 100; color: #eaeaea;
+            font-family: 'Cascadia Code', monospace; font-size: 14px;
+        }
+        @media screen and (max-width: 768px) { #preloader { left: 0; } }
+
+        /* OVERLAY STYLES */
+        #artwork-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(13, 12, 23, 0.95);
+            z-index: 9999; display: flex; justify-content: center; align-items: center;
+            opacity: 0; pointer-events: none; transition: opacity 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+        #artwork-overlay.active { opacity: 1; pointer-events: auto; }
+        #close-overlay {
+            position: absolute; top: 30px; right: 40px; background: none; border: none;
+            color: #eaeaea; font-size: 48px; font-weight: 300; cursor: pointer; 
+            font-family: 'Figtree', sans-serif; transition: transform 0.2s ease;
+        }
+        #close-overlay:hover { color: #fff; transform: scale(1.1); }
+        #overlay-content { max-width: 90vw; max-height: 85vh; display: flex; justify-content: center; align-items: center; }
+        #overlay-content img, #overlay-content video {
+            max-width: 100%; max-height: 85vh; object-fit: contain;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px;
+        }
+    </style>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+            }
+        }
+    </script>
+</head>
+<body class="video-finished">
+
+    <div id="preloader">Constructing Gallery Space...</div>
+
+    <div id="artwork-overlay">
+        <button id="close-overlay" aria-label="Close Overlay">×</button>
+        <div id="overlay-content"></div>
+    </div>
+
+    <main id="main-content">
+        
+        <aside class="sidebar">
+            <div class="logo-area" id="boundary">
+                <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.webp" class="shape-visual" alt="shape"></div>
+                <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.webp" class="shape-visual" alt="shape"></div>
+                <a href="index.html" style="text-decoration: none;"><div class="brand-text">insia</div></a>
+                <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.webp" class="shape-visual" alt="shape"></div>
+                <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.webp" class="shape-visual" alt="shape"></div>
+            </div>
+
+            <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </button>
+        
+            <nav class="side-nav" id="mobile-nav">
+                <ul class="main-menu">
+                    <li><a href="about.html" class="nav-link">about</a></li>
+                    <li class="has-dropdown">
+                        <a href="index.html" class="nav-link">work</a>
+                        <ul class="dropdown">
+                            <li><a href="illustrations.html">illustrations</a></li>
+                            <li><a href="innocence.html">innocence project</a></li>
+                            <li><a href="street.html">34th street magazine</a></li>
+                            <li><a href="dailypenn.html">the daily pennsylvanian</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            
+            <div class="fish-tank">
+                <div class="fish-wrapper swim-fast pos-1"><img src="img/fish/goldfish.webp" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-slow pos-2"><img src="img/fish/swede.webp" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-medium pos-3"><img src="img/fish/rainbow.webp" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-v-slow pos-4"><img src="img/fish/minnow.webp" class="fish-visual" alt="fish"></div>
+                <div class="fish-wrapper swim-fast-2 pos-5"><img src="img/fish/striped.webp" class="fish-visual" alt="fish"></div>
+            </div>
+        </aside>
+
+        <section class="content-area">
+            <div id="webgl-container"></div>
+            
+            <div class="gradient-overlay"></div>
+            
+            <div class="exhibition-ui">
+                <h1>Selected Works</h1>
+                <p>Click + Drag to explore. Scroll to Zoom. Click Artwork to expand.</p>
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <script type="module">
+        import * as THREE from 'three';
+        import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+
+        // ADD THIS LINE:
+        import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+
+        const container = document.getElementById('webgl-container');
+        const scene = new THREE.Scene();
+        scene.background = new THREE.Color('#0d0c17');
+        scene.fog = new THREE.FogExp2('#0d0c17', 0.012); 
+
+        const camera = new THREE.PerspectiveCamera(60, container.clientWidth / container.clientHeight, 0.1, 100);
+        camera.position.set(0, 0, 9); // Start slightly closer
+
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        renderer.setPixelRatio(window.devicePixelRatio);
+        container.appendChild(renderer.domElement);
+
+        const controls = new OrbitControls(camera, renderer.domElement);
+        controls.enableDamping = true;
+        controls.dampingFactor = 0.05;
+        controls.minDistance = 0.1; 
+        controls.maxDistance = 14; // Adjusted to match new tighter radius
+        controls.enablePan = false; 
+
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8)); 
+
+        // --- NEW: 3D CENTERPIECE MODEL ---
+const gltfLoader = new GLTFLoader();
+
+// Replace this with the actual path to your .glb file
+gltfLoader.load('img/horse.glb', (gltf) => {
+    const centerpiece = gltf.scene;
+    
+    // 1. Position it in the middle of the room. 
+    // y = -5 puts it slightly below eye level so you look down at it.
+    centerpiece.position.set(0, -5, 0); 
+    
+    // 2. Scale it up or down. If your model imports too huge or tiny, adjust these numbers.
+    // (1, 1, 1) is default native size. (2, 2, 2) is double size.
+    centerpiece.scale.set(0.7, 0.7, 0.7); 
+    
+    // 3. Add a specific spotlight just for the sculpture
+    
+    // 2. The Main Spotlight (Cranked up intensity from 50 to 500)
+    const sculptureLight = new THREE.SpotLight(0xffffff, 500);
+    sculptureLight.position.set(0, 5, 0); 
+    sculptureLight.target = centerpiece;
+    sculptureLight.angle = 0.8;
+    sculptureLight.penumbra = 0.5;
+    scene.add(sculptureLight);
+
+    // 3. A PointLight to act as a "flash" directly in front of it to reveal details
+    const frontFillLight = new THREE.PointLight(0xffffff, 150, 20);
+    frontFillLight.position.set(0, -3, 4); // Positioned slightly above and in front of the model
+    scene.add(frontFillLight);
+    
+    // 4. A Hemisphere Light to give it a subtle ambient glow from all sides
+    const ambientGlow = new THREE.HemisphereLight(0xffffff, 0x444444, 2);
+    ambientGlow.position.set(0, 0, 0);
+    scene.add(ambientGlow);
+
+    scene.add(centerpiece);
+    
+    scene.add(sculptureLight);
+    scene.add(centerpiece);
+    
+    // Optional: make it slowly rotate in the animate() loop later!
+    // centerpiece.userData = { isRotating: true }; 
+});
+
+        const floorGeometry = new THREE.PlaneGeometry(200, 200);
+        const floorMaterial = new THREE.MeshStandardMaterial({ color: '#111111', roughness: 0.1, metalness: 0.2 });
+        const floor = new THREE.Mesh(floorGeometry, floorMaterial);
+        floor.rotation.x = -Math.PI / 2;
+        floor.position.y = -25; 
+        scene.add(floor);
+
+        const raycaster = new THREE.Raycaster();
+        const mouse = new THREE.Vector2();
+        const clickableMeshes = []; 
+
+        const textureLoader = new THREE.TextureLoader();
+        
+        const portfolioPaths = [
+            'img/work/personal/Overwhelmed.mp4', 'img/work/personal/ADHD.mov',
+            'img/work/innocence/Stickers.mp4', 'img/work/street/Cluely.mp4',
+            'img/work/personal/mango.mp4', 'img/work/personal/horse animation.MP4',
+            'img/work/street/bags.mov', 'img/work/dp/Olympics.mp4', 'img/work/other/Adobe.mp4',
+            'img/work/dp/Rowan.webp', 'img/work/dp/9_24 kamala graffiti.webp',
+            'img/work/dp/3_25 anti testing.webp', 'img/work/dp/5_25 puzzles greens.webp',
+            'img/work/dp/Luigi.webp', 'img/work/dp/Cheating (Insia Haque).webp',
+            'img/work/dp/Biden Center.webp', 'img/work/dp/Valentines Day.webp',
+            'img/work/dp/Cheating.webp', 'img/work/dp/Beauty Standards in Love (Insia Haque).webp',
+            'img/work/dp/3_25 pro testing.webp',
+            'img/work/street/Tayvis Engagement.webp', 'img/work/street/The Emperor Has No Code.webp',
+            'img/work/street/WebDev.gif', 'img/work/street/10_23 panopticon.webp',
+            'img/work/street/Sinners (Insia Haque).webp', 'img/work/street/9_23 mattel cinematic universe.webp',
+            'img/work/street/9_23 tourism.webp', 'img/work/street/bbnomoola.gif',
+            'img/work/street/Biden Drug Pricing.webp', 'img/work/street/Gen Alpha (Insia Haque).webp',
+            'img/work/street/Death (and Rebirth) of the Male Popstar.webp', 'img/work/street/Benson Boone (Insia Haque).webp',
+            'img/work/street/Goodbye Free Will; Hello Fortune Tellers (Insia Haque).webp', 'img/work/street/malak hamza.webp',
+            'img/work/street/Porchfest (Insia Haque).webp', 'img/work/street/OCD.gif',
+            'img/work/street/Subway.webp', 'img/work/street/PMA is PMO.gif',
+            'img/work/street/Best of Culture.webp', 'img/work/street/AI Food Yummm (Insia Haque).webp',
+            'img/work/street/Bag Hunt.webp', 'img/work/street/London.webp', 'img/work/street/Oscar Predictions.webp',
+            'img/work/innocence/Dinner Card.webp', 'img/work/innocence/Bird Card.webp',
+            'img/work/innocence/BrownBlue.webp', 'img/work/innocence/Coldplay Featured Image.webp',
+            'img/work/innocence/just data.webp',
+            'img/work/personal/Hug.webp', 'img/work/personal/Mona Chuusa.webp', 'img/work/personal/The Kiss.webp'
+        ];
+
+        const getDynamicGeometry = (width, nativeWidth, nativeHeight) => {
+            const aspect = nativeWidth / nativeHeight;
+            const height = width / aspect;
+            return new THREE.PlaneGeometry(width, height);
+        };
+
+        const loadArtwork = (path) => {
+            return new Promise((resolve) => {
+                const isVideo = path.endsWith('.mp4') || path.endsWith('.mov') || path.endsWith('.MP4');
+                
+                if (isVideo) {
+                    const video = document.createElement('video');
+                    video.src = path;
+                    video.muted = true; video.loop = true; video.crossOrigin = 'anonymous';
+                    video.play(); 
+                    
+                    video.onloadedmetadata = function() {
+                        const texture = new THREE.VideoTexture(video);
+                        texture.colorSpace = THREE.SRGBColorSpace;
+                        const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+                        // UPSCALED: Base width from 5.5 to 7.0
+                        const geometry = getDynamicGeometry(7.0, this.videoWidth, this.videoHeight); 
+                        const mesh = new THREE.Mesh(geometry, material);
+                        mesh.userData = { path: path, isVideo: true }; 
+                        resolve(mesh);
+                    };
+                } else {
+                    textureLoader.load(path, (texture) => {
+                        texture.colorSpace = THREE.SRGBColorSpace;
+                        const material = new THREE.MeshBasicMaterial({ map: texture, side: THREE.DoubleSide });
+                        // UPSCALED: Base width from 5 to 6.5
+                        const geometry = getDynamicGeometry(6.5, texture.image.width, texture.image.height); 
+                        const mesh = new THREE.Mesh(geometry, material);
+                        mesh.userData = { path: path, isVideo: false };
+                        resolve(mesh);
+                    });
+                }
+            });
+        };
+
+        Promise.all(portfolioPaths.map(loadArtwork)).then((artworkMeshes) => {
+            document.getElementById('preloader').style.display = 'none';
+
+            // TIGHTER ROOM: Radius decreased to 15, pushing art closer together
+            const galleryRadius = 15; 
+            const itemsPerRow = 12; 
+            const rowHeightOffset = 8.0; 
+            const totalRows = Math.ceil(artworkMeshes.length / itemsPerRow);
+
+            artworkMeshes.forEach((mesh, index) => {
+                const row = Math.floor(index / itemsPerRow); 
+                const col = index % itemsPerRow;
+                const angle = (col / itemsPerRow) * Math.PI * 2;
+
+                mesh.position.x = Math.sin(angle) * galleryRadius;
+                mesh.position.z = Math.cos(angle) * galleryRadius;
+                mesh.position.y = (row - (totalRows - 1) / 2) * rowHeightOffset;
+                mesh.lookAt(0, mesh.position.y, 0); 
+                
+                scene.add(mesh);
+                clickableMeshes.push(mesh); 
+                
+                const spotLight = new THREE.SpotLight(0xffffff, 40);
+                spotLight.position.set(mesh.position.x * 0.8, mesh.position.y + 5, mesh.position.z * 0.8);
+                spotLight.target = mesh;
+                spotLight.angle = 1.0; 
+                spotLight.penumbra = 0.4;
+                scene.add(spotLight);
+            });
+        });
+
+        // OVERLAY LOGIC
+        const overlay = document.getElementById('artwork-overlay');
+        const overlayContent = document.getElementById('overlay-content');
+        const closeBtn = document.getElementById('close-overlay');
+
+        function openOverlay(data) {
+            overlayContent.innerHTML = ''; 
+            
+            if (data.isVideo) {
+                const vid = document.createElement('video');
+                vid.src = data.path;
+                vid.autoplay = true; vid.loop = true; vid.controls = true;
+                overlayContent.appendChild(vid);
+            } else {
+                const img = document.createElement('img');
+                img.src = data.path;
+                overlayContent.appendChild(img);
+            }
+            
+            overlay.classList.add('active');
+            controls.enabled = false; 
+        }
+
+        function closeOverlay() {
+            overlay.classList.remove('active');
+            overlayContent.innerHTML = ''; 
+            controls.enabled = true; 
+        }
+
+        container.addEventListener('click', (event) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+            mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(clickableMeshes);
+
+            if (intersects.length > 0) openOverlay(intersects[0].object.userData);
+        });
+
+        container.addEventListener('mousemove', (event) => {
+            const rect = renderer.domElement.getBoundingClientRect();
+            mouse.x = ( ( event.clientX - rect.left ) / rect.width ) * 2 - 1;
+            mouse.y = - ( ( event.clientY - rect.top ) / rect.height ) * 2 + 1;
+
+            raycaster.setFromCamera(mouse, camera);
+            const intersects = raycaster.intersectObjects(clickableMeshes);
+            document.body.style.cursor = intersects.length > 0 ? 'pointer' : 'default';
+        });
+
+        closeBtn.addEventListener('click', closeOverlay);
+        overlay.addEventListener('click', (e) => {
+            if(e.target === overlay) closeOverlay(); 
+        });
+
+        window.addEventListener('resize', () => {
+            camera.aspect = container.clientWidth / container.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(container.clientWidth, container.clientHeight);
+        });
+
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        //     scene.traverse((child) => {
+        //     if (child.isGroup) { // GLTF scenes often load as groups
+        //         child.rotation.y += 0.005; // Adjust speed here
+        //     }
+        // });
+        }
+        animate();
+    </script>
+</body>
+</html>
+</html>
