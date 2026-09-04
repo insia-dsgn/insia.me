@@ -262,10 +262,12 @@ body.video-finished #main-content {
 .dropdown {
     list-style: none;
     margin-top: 10px;
-    display: none; /* Hidden by default */
+    /* display: none; Hidden by default */
+    display: flex;
     flex-direction: column;
     gap: 15px;
     text-align: center;
+    line-height: 1.4;
 }
 
 .dropdown li a {
@@ -284,10 +286,10 @@ body.video-finished #main-content {
     cursor: url("img/cursor/cursor_grab.png") 4 12, auto;
 }
 
-/* Show dropdown on hover over the parent 'li' */
+/* Show dropdown on hover over the parent 'li'
 .has-dropdown:hover .dropdown {
     display: flex;
-}
+} */
 
 /* --- MASONRY GRID STYLES --- */
 .masonry-grid {
