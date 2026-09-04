@@ -12,13 +12,6 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <!-- <div id="loading-screen">
-        <div class="loader-content">
-            <div class="loader-brand">insia</div>
-            <div class="loader-status">initializing...</div>
-        </div>
-    </div> -->
-
     <div id="intro-container">
         <video id="intro-video" autoplay muted playsinline>
             <source src="vid/insia.mp4" type="video/mp4">
@@ -30,14 +23,12 @@
         <aside class="sidebar">
         
             <div class="logo-area" id="boundary">
-                <!-- <a href="index.html" style="text-decoration: none;"> -->
-                    <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.webp" class="shape-visual" alt="shape"></div>
+                <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.webp" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.webp" class="shape-visual" alt="shape"></div>
                     <a href="index.html" style="text-decoration: none;"><div class="brand-text">insia</div></a>
                     <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.webp" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.webp" class="shape-visual" alt="shape"></div>
-                <!-- </a> -->
-            </div>
+                </div>
 
             <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
                 <span></span><span></span><span></span>
@@ -47,14 +38,14 @@
                 <ul class="main-menu">
                     <li><a href="about.html" class="nav-link">about</a></li>
                     
-                    <li class="has-dropdown">
+                    <li>
                         <a href="index.html" class="nav-link">work</a>
                         
-                        <ul class="dropdown">
-                            <li><a href="illustrations.html">illustrations</a></li>
-                            <li><a href="innocence.html">innocence project</a></li>
-                            <li><a href="street.html">34th street magazine</a></li>
-                            <li><a href="dailypenn.html">the daily pennsylvanian</a></li>
+                        <ul style="display: block; position: static; visibility: visible; opacity: 1; padding-left: 1rem; margin-top: 0.5rem; list-style-type: none;">
+                            <li style="margin-bottom: 0.5rem;"><a href="illustrations.html">illustrations</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="innocence.html">innocence project</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="street.html">34th street magazine</a></li>
+                            <li style="margin-bottom: 0.5rem;"><a href="dailypenn.html">the daily pennsylvanian</a></li>
                         </ul>
                     </li>
                 </ul>
