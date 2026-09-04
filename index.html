@@ -12,6 +12,13 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+    <!-- <div id="loading-screen">
+        <div class="loader-content">
+            <div class="loader-brand">insia</div>
+            <div class="loader-status">initializing...</div>
+        </div>
+    </div> -->
+
     <div id="intro-container">
         <video id="intro-video" autoplay muted playsinline>
             <source src="vid/insia.mp4" type="video/mp4">
@@ -23,12 +30,14 @@
         <aside class="sidebar">
         
             <div class="logo-area" id="boundary">
-                <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.webp" class="shape-visual" alt="shape"></div>
+                <!-- <a href="index.html" style="text-decoration: none;"> -->
+                    <div class="shape-wrapper circle-pos draggable"><img src="img/logo/Ellipse.webp" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper star-pos draggable"><img src="img/logo/Star.webp" class="shape-visual" alt="shape"></div>
                     <a href="index.html" style="text-decoration: none;"><div class="brand-text">insia</div></a>
                     <div class="shape-wrapper square-pos draggable"><img src="img/logo/Rectangle.webp" class="shape-visual" alt="shape"></div>
                     <div class="shape-wrapper triangle-pos draggable"><img src="img/logo/Triangle.webp" class="shape-visual" alt="shape"></div>
-                </div>
+                <!-- </a> -->
+            </div>
 
             <button class="hamburger" aria-label="Toggle Menu" onclick="toggleMenu()">
                 <span></span><span></span><span></span>
@@ -41,11 +50,11 @@
                     <li class="has-dropdown">
                         <a href="index.html" class="nav-link">work</a>
                         
-                        <ul class="dropdown" style="position: relative; visibility: visible; opacity: 1; transform: none; display: block; margin-top: 1.5rem; padding: 0; text-align: center;">
-                            <li style="margin-bottom: 1.2rem;"><a href="illustrations.html" style="text-decoration: none;">illustrations</a></li>
-                            <li style="margin-bottom: 1.2rem;"><a href="innocence.html" style="text-decoration: none;">innocence project</a></li>
-                            <li style="margin-bottom: 1.2rem;"><a href="street.html" style="text-decoration: none;">34th street magazine</a></li>
-                            <li><a href="dailypenn.html" style="text-decoration: none;">the daily pennsylvanian</a></li>
+                        <ul class="dropdown">
+                            <li><a href="illustrations.html">illustrations</a></li>
+                            <li><a href="innocence.html">innocence project</a></li>
+                            <li><a href="street.html">34th street magazine</a></li>
+                            <li><a href="dailypenn.html">the daily pennsylvanian</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -261,4 +270,42 @@
                 </div>
 
                 <div class="grid-item">
-                    <a href="illustration/tayvis.html"><img src="img/work/street/Tayvis Engagement.webp" alt="Tayvis Engagement"
+                    <a href="illustration/tayvis.html"><img src="img/work/street/Tayvis Engagement.webp" alt="Tayvis Engagement" loading="lazy"></a>
+                    <div class="caption">
+                        <p>34TH STREET MAGAZINE - Sep 2025</p>
+                        <a href="illustration/tayvis.html"><h3>The Problematic Engagement of Taylor Swift and Travis Kelce</h3></a>
+                    </div>
+                </div>
+
+                <div class="grid-item">
+                    <a href="street.html"><img src="img/work/street/Street Best of.webp" alt="Best of 2025" loading="lazy"></a>
+                    <div class="caption">
+                        <p>34TH STREET MAGAZINE - Dec 2025</p>
+                        <h3>Best of 2025: Illustration & Design</h3>
+                    </div>
+                </div>
+
+                <div class="grid-item">
+                    <a href="illustration/subway.html"><img src="img/work/street/Subway.webp" alt="Subway Illustration" loading="lazy"></a>
+                    <div class="caption">
+                        <p>34TH STREET MAGAZINE - Oct 2025</p>
+                        <a href="illustration/subway.html"><h3>Stand Clear of the Opening Doors</h3></a>
+                    </div>
+                </div>
+
+                <div class="grid-item">
+                    <img src="img/work/other/SandyNurse.webp" alt="Sandy Nurse Flyers" loading="lazy">
+                    <div class="caption">
+                        <p>NYC COUNCIL - Summer 2023</p>
+                        <h3>Information Flyers & Posters</h3>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
